@@ -1,0 +1,72 @@
+/* Par Cébé, 2014-02-13
+	*/
+	
+/* Eléments principaux de la page */
+
+body
+{
+   /* background: url('images/fond_jaune.png'); */
+  /*  font-family: 'Trebuchet MS', Arial, sans-serif; */
+    color: #181818;
+}
+
+ #bloc_page
+
+select { 
+ /* min-width: 300px; */
+  min-width: 150px; 
+}
+
+textarea {
+ min-width: 90%;
+}
+
+input[type='number'] {
+ min-width: 90%; 
+}
+
+.jslider { 
+/*	max-width: 200px; */
+max-width: 150px; 
+}
+
+.well { 
+/*	padding: 12px; */
+	padding: 6px; 
+  	margin-bottom: 5px; 
+/*	min-width: 280px; */
+	min-width: 150px; 
+}
+
+.span8 { 
+/* min-width: 300px; */
+min-width: 150px;
+
+}
+    
+header 
+{
+	border: 3px black groove;
+	border-radius: 10px;
+	background-color: #99CCFF;
+} 
+
+ /* Gestion des pop up  faite dans la fonction HelpPopup.R*/
+/*.popover 
+ { 
+	width: 600px;  
+	position: relative; 
+ 	top: -600px !important; 
+ 	left: 320px !important; 
+} */
+
+h1
+{
+    color: black;
+}
+ 
+p
+{
+    text-align: left;
+    word-wrap: break-word;
+}
