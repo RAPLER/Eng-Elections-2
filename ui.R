@@ -56,8 +56,10 @@ fluidRow(
 ### local ou serveur
      # local
        HTML("<a class='btn' href='/'>Restart?</a>"), 
-     # serveur
-   #  HTML("<a class='btn' href='http://spark.rstudio.com/detector/en-elections/'>Restart?</a>"),
+     # serveur spark
+     #  HTML("<a class='btn' href='http://spark.rstudio.com/detector/en-elections/'>Restart?</a>"),
+    # serveur shinyApps.io
+      HTML("<a class='btn' href = 'http://webappcb001.shinyapps.io/CanadianElections/'>Restart?</a>"),
           div(class="row-fluid",
          div(class="span8",helpPopup("Restart",includeHTML("www/help/help_recommencer.html"),placement='right',trigger='hover', info = tags$i(class="icon-info-sign")))
      )
@@ -248,7 +250,7 @@ tabPanel("Graph",
 
 # Coordonnées    
     helpText("Author : Claude Boivin, Stat.ASSQ"),
-    tags$body(p("Elections version 0.3.16c"),p('Comments, suggestions : ', a(href="mailto:webapp.cb@gmail.com",'webapp.cb@gmail.com')))
+    tags$body(p("Elections version 0.3.16d"),p('Comments, suggestions : ', a(href="mailto:webapp.cb@gmail.com",'webapp.cb@gmail.com')))
         )
     , id = "onglets", type = "pills") # de tabsetPanel, li 177
 ) # fin du column, li 176
