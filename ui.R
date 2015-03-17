@@ -55,7 +55,7 @@ fluidRow(
      condition = "input.expertise == 'New analysis'",
 ### local ou serveur
      # local
-       HTML("<a class='btn' href='/'>Restart?</a>"), 
+     #  HTML("<a class='btn' href='/'>Restart?</a>"), 
      # serveur spark
      #  HTML("<a class='btn' href='http://spark.rstudio.com/detector/en-elections/'>Restart?</a>"),
     # serveur shinyApps.io
