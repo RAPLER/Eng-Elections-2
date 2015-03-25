@@ -4,7 +4,8 @@
 helpPopup <- function(title, content,
               placement=c('right', 'top', 'left', 'bottom'),
               trigger=c('click', 'hover', 'focus', 'manual'),
-              glue = NULL, info=NULL) {
+              glue = NULL, 
+              info=NULL) {
   
   tagList(
     singleton(
@@ -13,10 +14,13 @@ helpPopup <- function(title, content,
       )
     ),
     tags$a(
-  #   href = "#", class = "tip", `data-toggle` = "popover",
       href = "#",
-  #   mask the button if using glue
-   #   class = "btn btn-info btn-xs btn-block",
+      class = "tip",
+    ## 
+    # the Information mark is the receiver of the content
+    # the "glue" parameter allows the introduction of a variable text string or another object
+   tags$i(class = "glyphicon glyphicon-info-sign"), glue,
+   ###
       `data-toggle` = "popover",
       title = title, 
      `data-content` = content,
@@ -26,10 +30,10 @@ helpPopup <- function(title, content,
       `data-animation` = TRUE,
       `data-placement` = match.arg(placement, several.ok=TRUE)[1],
       `data-trigger` = match.arg(trigger, several.ok=TRUE)[1],  
-      glue,
+ ##     glue,
   #     mask the icon if using glue with hover
-   #  pass as a parameter:  tags$i(class="icon-info-sign")
-      info 
+   #  The icon style is passed with the parameter "info" in the app
+    info 
     ),
     # CB added for popup width control
     tags$style(type='text/css', ".popover { width: 400px; relative; left: 320px !important; }")

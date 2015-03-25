@@ -39,7 +39,13 @@ fluidRow(
     
     # Aide sur Actions sur les analyses
     div(class="row-fluid",
-        div(class="span8",helpPopup("File management",includeHTML("www/help/help_file_manage.html"),placement='right',trigger='hover', glue = h4("File management")))
+        div(class="span8",helpPopup(
+          "File management",
+          includeHTML("www/help/help_file_manage.html"),
+          placement='right',
+          trigger='hover', 
+          glue = tags$a("File management", class = "icon-question-sign")
+          ))
     ),
 
    radioButtons("expertise", "", 
@@ -51,25 +57,39 @@ fluidRow(
                 selected="New analysis"),
 
    # Bouton "Recharger la page" et Aide - Recharger
+   ### local ou serveur
+   # local
+   # glue = tags$a(class="btn btn-default", href='/', "New analysis") 
+   
+   # serveur spark
+   #  HTML("<a class='btn' href='http://spark.rstudio.com/detector/en-elections/'>Restart?</a>"),
+   
+   # serveur shinyApps.io
+   # activer cette ligne pour publier sur shinyapps.io
+   #  HTML("<a class='btn' href = 'http://webappcb001.shinyapps.io/CanadianElections/'>Restart?</a>"), 
    conditionalPanel(
      condition = "input.expertise == 'New analysis'",
-### local ou serveur
-     # local
-     #  HTML("<a class='btn' href='/'>Restart?</a>"), 
-     # serveur spark
-     #  HTML("<a class='btn' href='http://spark.rstudio.com/detector/en-elections/'>Restart?</a>"),
-    # serveur shinyApps.io
-      HTML("<a class='btn' href = 'http://webappcb001.shinyapps.io/CanadianElections/'>Restart?</a>"),
           div(class="row-fluid",
-         div(class="span8",helpPopup("Restart",includeHTML("www/help/help_recommencer.html"),placement='right',trigger='hover', info = tags$i(class="icon-info-sign")))
-     )
+         div(class="span8",helpPopup(
+           "Restart",
+           includeHTML("www/help/help_recommencer.html"),
+           placement='right',
+           trigger='hover', 
+           glue = tags$a(class="btn btn-default", href='/', "New analysis")
+          ))   
+  )
    ),
    
     # Only show this panel if the choice is "Resume"
     conditionalPanel(
       condition = "input.expertise == 'Resume'",
       div(class="row-fluid",
-          div(class="span8",helpPopup("To resume a previously saved analysis:",includeHTML("www/help/help_actions_reprendre.html"),placement='right',trigger='hover', info = tags$i(class="icon-info-sign")))
+        div(class="span8",helpPopup(
+          "To resume a previously saved analysis:",
+          includeHTML("www/help/help_actions_reprendre.html"),
+          placement='right',
+          trigger='hover', 
+        ))
       ),
       fileInput('factsList', 'Téléchargement des données',
                 accept=c('text/csv', 'text/comma-separated-values,text/plain'))
@@ -79,7 +99,12 @@ fluidRow(
     conditionalPanel(
       condition = "input.expertise == 'Resume (iPad-iPhone)'",
       div(class="row-fluid",
-          div(class="span1",helpPopup("To Resume on iPad/iPhone a previously saved analysis:",includeHTML("www/help/help_actions_reprendre_iPad.html"),placement='right',trigger='hover', info = tags$i(class="icon-info-sign")))
+        div(class="span1",helpPopup(
+          "To Resume on iPad/iPhone a previously saved analysis:",
+          includeHTML("www/help/help_actions_reprendre_iPad.html"),
+          placement='right',
+          trigger='hover', 
+          ))
       ),
  #    textInput("startFacts", "URL :","")
  h4("Data table:"),
@@ -88,7 +113,12 @@ fluidRow(
    conditionalPanel(
      condition = "input.expertise == 'Example'",
      div(class="row-fluid",
-         div(class="span8",helpPopup("Example",includeHTML("www/help/help_actions_exemple.html"),placement='right',trigger='hover', info = tags$i(class="icon-info-sign")))
+      div(class="span8",helpPopup(
+        "Example",
+        includeHTML("www/help/help_actions_exemple.html"),
+        placement='right',
+        trigger='hover' 
+        ))
      )
    )
   )
@@ -98,9 +128,12 @@ fluidRow(
 column(2, wellPanel(  # fin à li 171
   # Aide - Choisir/Ajouter/Retirer
   div(class="row-fluid",
-  div(class="span8",helpPopup("Choose/Add/Delete",includeHTML("www/help/help_Ajouter_Retirer.html"),placement='right',trigger='hover', 
-  glue = h4("Actions on issues")                                                                                                                                                        
-  #   info = tags$i(class="icon-info-sign")
+    div(class="span8",helpPopup(
+      "Choose/Add/Delete",
+      includeHTML("www/help/help_Ajouter_Retirer.html"),
+      placement='right',
+      trigger='hover', 
+      glue = tags$a(class = "icon-question-sign", "Actions on issues")
   ))
   ), 
   
@@ -114,26 +147,42 @@ column(2, wellPanel(  # fin à li 171
   conditionalPanel(
     condition = ("input.add_del == 'Choosing an issue'"),
     div(class="row-fluid", 
-    div(class="span8", helpPopup("Choosing an issue",includeHTML("www/help/help_choisir_fait.html"), placement='right',trigger='hover', glue = h4("1. Choose an issue in the proposed list")
- #   info = tags$i(class="icon-info-sign")
-    ))),
+      div(class="span8", helpPopup(
+        "Choosing an issue",
+        includeHTML("www/help/help_choisir_fait.html"),
+        placement='right',
+        trigger='hover', 
+        glue = tags$a(h4("1. Choose an issue in the proposed list")) 
+        )
+        )),
  uiOutput("choix1")
        ),  
  
  conditionalPanel(
    condition = ("input.add_del == 'Adding yourself an issue'"),
    div(class="row-fluid", 
-       div(class="span8", helpPopup("Add an issue",includeHTML("www/help/help_entrer_fait.html"), placement='right',trigger='hover', glue = h4("1. Describe an issue")
-    #   info = tags$i(class="icon-info-sign")
-       ))),
+    div(class="span8", helpPopup(
+      "Add an issue",
+      includeHTML("www/help/help_entrer_fait.html"), 
+      placement='right',
+      trigger='hover', 
+      glue = tags$a(h4("1. Describe an issue"))
+       )
+      )),
    uiOutput("choix2")
  ),
  
   conditionalPanel(
     condition = ("input.add_del == 'Removing an issue'"),
     div(class="row-fluid", 
-        div(class="span8",helpPopup("Remove issue",includeHTML("www/help/help_retirer_fait.html"),placement='right',trigger='hover', glue =  h4("Number of the issue to remove")
-  ))),
+      div(class="span8",helpPopup(
+        "Remove issue",
+        includeHTML("www/help/help_retirer_fait.html"),
+        placement='right',
+        trigger='hover', 
+        glue =  tags$a(h4("Number of the issue to remove"))
+    )
+    )),
 uiOutput("choix3"),
 # test si no de fait invalide
 # This makes web page load the JS file in the HTML head.
@@ -149,17 +198,24 @@ singleton(
   conditionalPanel(
     condition = ("input.add_del != 'Removing an issue'"),
     div(class="row-fluid", 
-        div(class="span8", helpPopup("Points to",includeHTML("www/help/help_pointevers.html"), placement='right',trigger='hover', glue = h4("2. Choose the party that meets your expectations for the issue chosen")
-# info = tags$i(class="icon-info-sign")
-))),
+      div(class="span8", 
+        helpPopup("Points to",includeHTML("www/help/help_pointevers.html"), 
+        placement='right',
+        trigger='hover', 
+        glue = tags$a(h4("2. Choose the party that meets your expectations for the issue chosen")))
+)),
   uiOutput("valHyp")
   ),
 
   conditionalPanel(
     condition = ("input.add_del != 'Removing an issue'"),
     div(class="row-fluid", 
-        div(class="span8", helpPopup("Weighting your issue",includeHTML("www/help/help_poids.html"), placement='right',trigger='hover', glue = h4("3. Personal priority for this issue")
-  # info = tags$i(class="icon-info-sign")
+      div(class="span8", 
+        helpPopup("Weighting your issue",
+        includeHTML("www/help/help_poids.html"), 
+        placement='right',
+        trigger='hover', 
+        glue = tags$a(h4("3. Personal priority for this issue"))
   ))),
   uiOutput("num")
   ),
@@ -171,14 +227,24 @@ singleton(
 # column(2, wellPanel(
 # Bouton "Évaluer" et Aide - Évaluer
   div(class="row-fluid",
-      actionButton("goButton", "Evaluate"),
-      div(class="span8",helpPopup("Evaluate",includeHTML("www/help/help_evaluer.html"),placement='right',trigger='hover', info = tags$i(class="icon-info-sign")))
+      div(class="span8",
+        helpPopup("Evaluate",
+        includeHTML("www/help/help_evaluer.html"),
+        placement='right',
+        trigger='hover',
+        glue = actionButton("goButton", "Evaluate")
+        ))
   ),
 # Submit de l'analyse
   # bouton "submit" et aide - Submit
-div(class="row-fluid",
- div(class="span8",actionButton("submit_ana", "Add to the overall analysis")),
-div(class="span10",helpPopup("Add to the overall analysis",includeHTML("www/help/help_soumettre.html"),placement='top',trigger='hover', info = tags$i(class="icon-info-sign")))
+  div(class="row-fluid",
+  div(class="span8",
+    helpPopup("Sharing your analysis with others",
+    includeHTML("www/help/help_soumettre.html"),
+    placement='top',
+    trigger='hover',
+    glue = actionButton("submit_ana", "Share")
+    ))
 ),
 # only show if submit_ana >= 1
  conditionalPanel(
@@ -201,7 +267,12 @@ column(6,
         "Issues",
          # Tableau des faits
         div(class="row-fluid",
-          div(class="span8",helpPopup("Your table of issues",includeHTML("www/help/help_tableau_faits.html"),placement='bottom',trigger='hover', glue = h5("Table of issues chosen")))
+          div(class="span8",
+            helpPopup("Your table of issues",
+            includeHTML("www/help/help_tableau_faits.html"),
+            placement='bottom',
+            trigger='hover', 
+            glue = tags$a(h5("Table of issues chosen"))))
         ),     
         dataTableOutput("grid"),
         textInput("userfilename2",h4("Save your table of issues:") ,value = "Issue-Elections-Canada"),
@@ -211,11 +282,21 @@ column(6,
       tabPanel(
         "Results",
         div(class="row-fluid",
-            div(class="span8",helpPopup("Interpretation of measurements",includeHTML("www/help/help_results.html"),placement='bottom',trigger='hover', glue = h5("Results of the combination of your issues")))
+        div(class="span8",
+          helpPopup("Interpretation of measurements",
+          includeHTML("www/help/help_results.html"),
+          placement='bottom',
+          trigger='hover', 
+          glue = tags$a(h5("Results of the combination of your issues"))))
         ), 
         tableOutput("view5"),
         div(class="row-fluid", 
-          div(class="span8",helpPopup("Weight of conflict",includeHTML("www/help/help_contradiction.html"),placement='bottom',trigger='hover', glue = h5("Weight of conflict between issues:")))
+        div(class="span8",
+          helpPopup("Weight of conflict",
+          includeHTML("www/help/help_contradiction.html"),
+          placement='bottom',
+          trigger='hover', 
+          glue = tags$a(h5("Weight of conflict between issues:"))))
             ),
     textOutput("view5a"),
         textInput("userfilename1",h4("Save results:") ,value="Results-Elections-Canada"),
@@ -225,7 +306,12 @@ column(6,
 # Onglet graphique
 tabPanel("Graph",
          div(class="row-fluid",
-         div(class="span8",helpPopup("The For/Against ratios",includeHTML("www/help/help_graphe_Ratios.html"),placement='bottom',trigger='hover', glue = h5("Graph of the For/Against ratios")))
+         div(class="span8",
+            helpPopup("The For/Against ratios",
+            includeHTML("www/help/help_graphe_Ratios.html"),
+            placement='bottom',
+            trigger='hover', 
+            glue = tags$a(h5("Graph of the For/Against ratios"))))
          ),
          plotOutput("plot0")
 ),
@@ -233,12 +319,21 @@ tabPanel("Graph",
 # Onglet Tendance
     tabPanel("Trend",
         div(class="row-fluid",
-             div(class="span8",helpPopup("Following the Trend",includeHTML("www/help/help_trend.html"),placement='bottom',trigger='hover', glue = h5("Evolution or the For/Against ratios")))
+        div(class="span8",
+          helpPopup("Following the Trend",
+          includeHTML("www/help/help_trend.html"),
+          placement='bottom',
+          trigger='hover', 
+          glue = tags$a(h5("Evolution or the For/Against ratios"))))
              ),
         plotOutput("plot1"),
-        
         div(class="row-fluid",
-            div(class="span8",helpPopup("Following the conflict",includeHTML("www/help/help_conflit.html"),placement='bottom',trigger='hover', glue = h5("Evolution of the weight of conflict")))
+        div(class="span8",
+          helpPopup("Following the conflict",
+          includeHTML("www/help/help_conflit.html"),
+          placement='bottom',
+          trigger='hover', 
+          glue = tags$a(h5("Evolution of the weight of conflict"))))
         ),
       dataTableOutput("grid2")
     ),
@@ -256,6 +351,3 @@ tabPanel("Graph",
 ) # fin du column, li 176
 ) # fin du fluidRow, li 36
 )) # de fluidpage
-#test
-# )) # de pagewithsidebar fn
-
