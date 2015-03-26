@@ -75,7 +75,8 @@ fluidRow(
            includeHTML("www/help/help_recommencer.html"),
            placement='right',
            trigger='hover', 
-           glue = tags$a(class="btn btn-default", href='/', "New analysis")
+      #     glue = tags$a(class="btn btn-default", href='/', "New analysis")
+     glue =  tags$a(class="btn btn-default", href = 'http://webappcb001.shinyapps.io/CanadianElections/', "New analysis")
           ))   
   )
    ),
